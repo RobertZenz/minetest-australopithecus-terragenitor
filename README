@@ -1,0 +1,20 @@
+Example usage:
+
+    -- Create a new instance of TerraGenitor.
+    local terragenitor = TerraGenitor:new()
+    
+    -- Register the modules.
+    terragenitor:register(ExampleModule:new())
+    terragenitor:register(OtherModule:new())
+    
+    -- Init the whole system.
+    terragenitor:init()
+    
+    -- Gets a map starting at the coordinates 0 and 0.
+    -- The size of the map defaults to constants.block_size, which is most
+    -- liekly 80.
+    local map = terragenitor:get_map(0, 0)
+    
+    -- Get the value for the coordinates 25 and 30
+    local value = map[25][30]
+
