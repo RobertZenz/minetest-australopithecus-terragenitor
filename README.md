@@ -1,1 +1,1 @@
-/home/robert/dev/minetest-australopithecus/terragenitor/README
+README
