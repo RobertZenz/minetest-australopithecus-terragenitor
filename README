@@ -15,6 +15,6 @@ Example usage:
     -- liekly 80.
     local map = terragenitor:get_map(0, 0)
     
-    -- Get the value for the coordinates 25 and 30
+    -- Get the value for the coordinates x 25 and z 30
     local value = map[25][30]
 
