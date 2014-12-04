@@ -1,5 +1,6 @@
 
 SingleNoiseModule = {}
+setmetatable(SingleNoiseModule, { __index = Module })
 
 
 function SingleNoiseModule:new()
@@ -7,6 +8,9 @@ function SingleNoiseModule:new()
 	
 	instance.noise = nil
 	instance.map = nil
+	
+	setmetatable(instance, self)
+	self.__index = self
 	
 	return instance
 end
