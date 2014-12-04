@@ -8,9 +8,6 @@ function SingleNoiseModule:new()
 	instance.noise = nil
 	instance.map = nil
 	
-	setmetatable(instance, self)
-	self.__index = self
-	
 	return instance
 end
 
@@ -24,7 +21,7 @@ function SingleNoiseModule:init_map(x, z)
 	self.map = tableutil.swapped_reindex2d(self.map, x, z)
 end
 
-function SingleNoiseModule:get(x, z, value, info)
-	return value + self.map[x][z] * 5, info
+function SingleNoiseModule:get(x, z, value, info, support)
+	return value + math.floor(self.map[x][z] * 5), info
 end
 
