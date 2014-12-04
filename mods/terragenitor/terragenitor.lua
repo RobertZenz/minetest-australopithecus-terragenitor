@@ -67,8 +67,11 @@ end
 --
 -- @param x The x coordinate.
 -- @param z The z coordinate.
+-- @param support Optional. The support object that provides additional
+--                additional information for the module. The format of this
+--                is not defined.
 -- @return The value at the given coordinates.
-function TerraGenitor:get(x, z)
+function TerraGenitor:get(x, z, support)
 	local value = self.base_value
 	local info = {}
 	
@@ -93,8 +96,11 @@ end
 --
 -- @param x The x coordinate.
 -- @param z The z coordinate.
+-- @param support Optional. The support object that provides additional
+--                additional information for the module. The format of this
+--                is not defined.
 -- @return A map with all values starting at the given coordinates.
-function TerraGenitor:get_map(x, z)
+function TerraGenitor:get_map(x, z, support)
 	if self:is_cached(x, z) then
 		return self.cache[x][z]
 	end

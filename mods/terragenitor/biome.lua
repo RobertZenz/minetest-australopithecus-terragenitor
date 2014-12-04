@@ -25,12 +25,35 @@ OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 --]]
 
 
--- Get the base path.
-local base_path = minetest.get_modpath(minetest.get_current_modname())
+Biome = {}
 
--- Load the necessary files.
-dofile(base_path .. "/biome.lua")
-dofile(base_path .. "/caelum.lua")
-dofile(base_path .. "/module.lua")
-dofile(base_path .. "/terragenitor.lua")
+
+function Biome:new(name, parameters)
+	parameters = parameters or {}
+	
+	local instance = {
+		name = name,
+		
+		is_ocean = parameters.needs_ocean or nil,
+		max_elevation = parameters.max_elevation or 31000,
+		max_humidity = parameters.max_humidity or -31000,
+		max_temperature = parameters.max_temperature or -31000,
+		min_elevation = parameters.min_elevation or -31000,
+		min_humidity = parameters.min_humidity or -31000,
+		min_temperature = parameters.min_temperature or -31000
+	}
+	
+	setmetatable(instance, self)
+	self.__index = self
+	
+	return instance
+end
+
+
+function Biome:fits(x, z, elevation, temperature, humidity)
+	return elevation.value >= self.min_elevation and elevation.value < self.max_elevation
+		and humidity.value >= self.min_humidity and humidity.value < self.max_humidity
+		and temperature.value >= self.min_temperature.value and temperature < self.max_temperature
+		and (self.is_ocean ~= nil or self.is_ocean == elevation.info.ocean)
+end
 

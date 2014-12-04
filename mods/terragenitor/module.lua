@@ -68,8 +68,11 @@ end
 -- @param z The z coordinate.
 -- @param value The base value.
 -- @param info The info object.
+-- @param support Optional. The support object that provides additional
+--                additional information for the module. The format of this
+--                is not defined.
 -- @return The value and the info object.
-function Module:get(x, z, value, info)
+function Module:get(x, z, value, info, support)
 	return value, info
 end
 

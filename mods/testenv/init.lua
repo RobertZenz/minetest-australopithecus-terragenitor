@@ -67,7 +67,7 @@ minetest.register_on_generated(function(minp, maxp, seed)
 	
 	for x = minp.x, maxp.x, 1 do
 		for z = minp.z, maxp.z, 1 do
-			local elevation = elevation_map[x][z].value
+			local elevation = math.floor(elevation_map[x][z].value)
 			
 			for y = minp.y, math.min(elevation, maxp.y), 1 do
 				if x == minp.x or z == minp.z
