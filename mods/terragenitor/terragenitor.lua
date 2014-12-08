@@ -77,7 +77,7 @@ function TerraGenitor:get(x, z, support)
 	
 	for idx = 0, self.module_counter - 1, 1 do
 		local module = self.modules[idx]
-		value, info = module:get(x, z, value, info)
+		value, info = module:get(x, z, value, info, support)
 	end
 	
 	return value, info
@@ -116,7 +116,7 @@ function TerraGenitor:get_map(x, z, support)
 		map[idxx] = {}
 		
 		for idxz = z, z + constants.block_size - 1, 1 do
-			local value, info = self:get(idxx, idxz)
+			local value, info = self:get(idxx, idxz, support)
 			
 			map[idxx][idxz] = {
 				value = value,
