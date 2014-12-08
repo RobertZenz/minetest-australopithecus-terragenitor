@@ -50,7 +50,7 @@ function Biome:new(name, parameters)
 end
 
 
-function Biome:fits(x, z, elevation, temperature, humidity)
+function Biome:fits(x, z, elevation, humidity, temperature)
 	return elevation.value >= self.min_elevation and elevation.value < self.max_elevation
 		and humidity.value >= self.min_humidity and humidity.value < self.max_humidity
 		and temperature.value >= self.min_temperature and temperature.value < self.max_temperature
