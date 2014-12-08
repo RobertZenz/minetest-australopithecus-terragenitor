@@ -80,7 +80,7 @@ function Caelum:get_biome_map(x, z, elevation_map)
 	end
 	
 	local humidity_map = self.humidity:get_map(x, z, elevation_map)
-	local temperature_map = self.humidity:get_map(x, z, elevation_map)
+	local temperature_map = self.temperature:get_map(x, z, elevation_map)
 	
 	local map = {}
 	
