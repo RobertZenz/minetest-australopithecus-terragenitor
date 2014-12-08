@@ -43,7 +43,7 @@ TerraGenitor = {}
 function TerraGenitor:new(base_value)
 	local instance = {
 		base_value = base_value or 0,
-		cache = {},
+		cache = BlockedCache:new(),
 		initialized = false,
 		module_counter = 0,
 		modules = {}
@@ -55,11 +55,6 @@ function TerraGenitor:new(base_value)
 	return instance
 end
 
-
---- Clears the complete map cache.
-function TerraGenitor:clear_cache()
-	self.cache = {}
-end
 
 --- Get the value for the given x and z coordinate.
 --
@@ -101,8 +96,8 @@ end
 --                is not defined.
 -- @return A map with all values starting at the given coordinates.
 function TerraGenitor:get_map(x, z, support)
-	if self:is_cached(x, z) then
-		return self.cache[x][z]
+	if self.cache:is_cached(x, z) then
+		return self.cache:get(x, z)
 	end
 	
 	for idx = 0, self.module_counter - 1, 1 do
@@ -125,11 +120,7 @@ function TerraGenitor:get_map(x, z, support)
 		end
 	end
 	
-	if self.cache[x] == nil then
-		self.cache[x] = {}
-	end
-	
-	self.cache[x][z] = map
+	self.cache:put(x, z, map)
 	
 	return map
 end
@@ -151,15 +142,6 @@ function TerraGenitor:init(noise_manager)
 		
 		self.initialized = true
 	end
-end
-
---- Gets if the map of the given x and z coordinates is cached.
---
--- @param x The x coordinate.
--- @param z The z coordinate.
--- @return true if the map for the given coordinates is cached.
-function TerraGenitor:is_cached(x, z)
-	return self.cache[x] ~= nil and self.cache[x][z] ~= nil
 end
 
 --- Gets if this instance has been initialized.

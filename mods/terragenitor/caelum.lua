@@ -41,7 +41,7 @@ Caelum = {}
 function Caelum:new(humidity_base_value, temperature_base_value)
 	local instance = {
 		biomes = {},
-		biomes_cache = {},
+		biomes_cache = BlockedCache:new(),
 		biomes_counter = 0,
 		default_biome = nil,
 		humidity = TerraGenitor:new(humidity_base_value),
@@ -54,13 +54,6 @@ function Caelum:new(humidity_base_value, temperature_base_value)
 	return instance
 end
 
-
---- Clears the complete map cache.
-function Caelum:clear_cache()
-	self.biomes_cache = {}
-	self.humidity:clear_cache()
-	self.temperature:clear_cache()
-end
                                                                                                       
 function Caelum:get_biome(x, z, elevation, humidity, temperature)
 	local biome = self.default_biome
@@ -75,8 +68,8 @@ function Caelum:get_biome(x, z, elevation, humidity, temperature)
 end
 
 function Caelum:get_biome_map(x, z, elevation_map)
-	if self:is_cached(x, z) then
-		return self.biomes_cache[x][z]
+	if self.biomes_cache:is_cached(x, z) then
+		return self.biomes_cache:get(x, z)
 	end
 	
 	local humidity_map = self.humidity:get_map(x, z, elevation_map)
@@ -96,6 +89,8 @@ function Caelum:get_biome_map(x, z, elevation_map)
 		end
 	end
 	
+	self.biomes_cache:put(x, z, map)
+	
 	return map
 end
 
@@ -110,10 +105,6 @@ end
 function Caelum:init(noise_manager)
 	self.humidity:init(noise_manager)
 	self.temperature:init(noise_manager)
-end
-
-function Caelum:is_cached(x, z)
-	return self.biomes_cache[x] ~= nil and self.biomes_cache[x][z] ~= nil
 end
 
 function Caelum:register_biome(biome)
