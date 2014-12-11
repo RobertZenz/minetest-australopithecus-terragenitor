@@ -95,7 +95,7 @@ function Caelum:get_biome_map(x, z, elevation_map)
 end
 
 function Caelum:get_humidity_map(x, z, elevation_map)
-	return self.humidity:get_map(x, z)
+	return self.humidity:get_map(x, z, elevation_map)
 end
 
 function Caelum:get_temperature_map(x, z, elevation_map)
