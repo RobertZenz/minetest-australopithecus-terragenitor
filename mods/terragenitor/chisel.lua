@@ -25,16 +25,17 @@ OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 --]]
 
 
---- The template for a Module to be used with TerraGenitor.
+--- The template for a CHisel to be used with Sculptor.
 --
 -- This is basically only an abstract base, the methods need to be implmented
 -- in the implementing object.
-Module = {}
+Chisel = {}
 
 
---- Creates a new instance of Module.
--- @return A new instance of Module.
-function Module:new()
+--- Creates a new instance of Chisel.
+--
+-- @return A new instance of Chisel.
+function Chisel:new()
 	local instance = {}
 	
 	setmetatable(instance, self)
@@ -44,35 +45,33 @@ function Module:new()
 end
 
 
---- The init method is called when TerraGenitor's init method is called.
+--- The init method is called when Sculptors init method is called.
 -- It is only called once right at the beginning.
 --
 -- @param noise_manager The NoiseManager that is used.
-function Module:init(noise_manager)
+function Chisel:init(noise_manager)
 end
 
---- The init_map method is called before values for a certain segment of
+--- The init_block method is called before values for a certain segment of
 -- the map are requested.
 --
 -- @param x The x coordinate of the block.
+-- @param y The y coordinate of the block.
 -- @param z The z coordiante of the block.
-function Module:init_map(x, z)
+function Chisel:init_block(x, y, z)
 end
 
---- Gets the value and info from this Module.
---
--- The info object is an undefined table, which allows each module to save
--- individual information.
+--- Gets the value for the node at the given coordinates.
 --
 -- @param x The x coordinate.
+-- @param y The y coordinate.
 -- @param z The z coordinate.
 -- @param value The base value.
--- @param info The info object.
 -- @param support Optional. The support object that provides additional
---                additional information for the module. The format of this
+--                additional information for the chisel. The format of this
 --                is not defined.
--- @return The value and the info object.
-function Module:get(x, z, value, info, support)
-	return value, info
+-- @return The value for the node at the given coordinates.
+function Chisel:get(x, y, z, value, support)
+	return value
 end
 

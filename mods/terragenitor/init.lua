@@ -31,6 +31,8 @@ local base_path = minetest.get_modpath(minetest.get_current_modname())
 -- Load the necessary files.
 dofile(base_path .. "/biome.lua")
 dofile(base_path .. "/caelum.lua")
+dofile(base_path .. "/chisel.lua")
 dofile(base_path .. "/module.lua")
+dofile(base_path .. "/sculptor.lua")
 dofile(base_path .. "/terragenitor.lua")
 
