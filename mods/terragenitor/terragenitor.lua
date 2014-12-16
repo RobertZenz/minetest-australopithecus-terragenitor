@@ -45,8 +45,7 @@ function TerraGenitor:new(base_value)
 		base_value = base_value or 0,
 		cache = BlockedCache:new(),
 		initialized = false,
-		module_counter = 0,
-		modules = {}
+		modules = List:new()
 	}
 	
 	setmetatable(instance, self)
@@ -55,28 +54,6 @@ function TerraGenitor:new(base_value)
 	return instance
 end
 
-
---- Get the value for the given x and z coordinate.
---
--- This method should only be called from the get_map method.
---
--- @param x The x coordinate.
--- @param z The z coordinate.
--- @param support Optional. The support object that provides additional
---                additional information for the module. The format of this
---                is not defined.
--- @return The value at the given coordinates.
-function TerraGenitor:get(x, z, support)
-	local value = self.base_value
-	local info = {}
-	
-	for idx = 0, self.module_counter - 1, 1 do
-		local module = self.modules[idx]
-		value, info = module:get(x, z, value, info, support)
-	end
-	
-	return value, info
-end
 
 --- Gets the map for the given x and z coordinate.
 -- The map is a 2D array/table, with the first dimension being x, the second
@@ -100,10 +77,9 @@ function TerraGenitor:get_map(x, z, support)
 		return self.cache:get(x, z)
 	end
 	
-	for idx = 0, self.module_counter - 1, 1 do
-		local module = self.modules[idx]
+	self.modules:foreach(function(module)
 		module:init_map(x, z)
-	end
+	end)
 	
 	local map = {}
 		
@@ -111,7 +87,12 @@ function TerraGenitor:get_map(x, z, support)
 		map[idxx] = {}
 		
 		for idxz = z, z + constants.block_size - 1, 1 do
-			local value, info = self:get(idxx, idxz, support)
+			local value = self.base_value
+			local info = {}
+			
+			self.modules:foreach(function(module)
+				value, info = module:get(idxx, idxz, value, info, support)
+			end)
 			
 			map[idxx][idxz] = {
 				value = value,
@@ -135,10 +116,9 @@ function TerraGenitor:init(noise_manager)
 	if self.initialized == false then
 		noise_manager = noise_manager or NoiseManager:new()
 		
-		for idx = 0, self.module_counter - 1, 1 do
-			local module = self.modules[idx]
+		self.modules:foreach(function(module)
 			module:init(noise_manager)
-		end
+		end)
 		
 		self.initialized = true
 	end
@@ -158,7 +138,6 @@ end
 --
 -- @param module The module to register.
 function TerraGenitor:register(module)
-	self.modules[self.module_counter] = module
-	self.module_counter = self.module_counter + 1
+	self.modules:add(module)
 end
 

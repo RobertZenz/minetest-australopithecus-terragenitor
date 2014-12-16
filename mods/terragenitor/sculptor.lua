@@ -35,8 +35,7 @@ Sculptor = {}
 --- Creates a new instance of Sculptor.
 function Sculptor:new()
 	local instance = {
-		chisel_counter = 0,
-		chisels = {},
+		chisels = List:new(),
 		initialized = false
 	}
 	
@@ -57,10 +56,9 @@ function Sculptor:init(noise_manager)
 	if self.initialized == false then
 		noise_manager = noise_manager or NoiseManager:new()
 		
-		for idx = 0, self.chisel_counter - 1, 1 do
-			local chisel = self.chisels[idx]
+		self.chisels:foreach(function(chisel)
 			chisel:init(noise_manager)
-		end
+		end)
 		
 		self.initialized = true
 	end
@@ -81,8 +79,7 @@ end
 --
 -- @param chisel The chisel to register.
 function Sculptor:register(chisel)
-	self.chisels[self.chisel_counter] = chisel
-	self.chisel_counter = self.chisel_counter + 1
+	self.chisels:add(chisel)
 end
 
 --- Sculpts the given data by calling all chisels on it.
@@ -96,20 +93,18 @@ end
 --                information for the chisels. The format is not defined.
 -- @return The same data object as given.
 function Sculptor:sculpt(x, y, z, data, area, support)
-	for idx = 0, self.chisel_counter - 1, 1 do
-		local chisel = self.chisels[idx]
+	self.chisels:foreach(function(chisel)
 		chisel:init_block(x, y, z)
-	end
+	end)
 	
 	for idxx = x, x + constants.block_size - 1, 1 do
 		for idxz = z, z + constants.block_size - 1, 1 do
 			for idxy = y, y + constants.block_size - 1, 1 do
 				local index = area:index(idxx, idxy, idxz)
 				
-				for idx = 0, self.chisel_counter - 1, 1 do
-					local chisel = self.chisels[idx]
+				self.chisels:foreach(function(chisel)
 					data[index] = chisel:get(idxx, idxy, idxz, data[index], support)
-				end
+				end)
 			end
 		end
 	end

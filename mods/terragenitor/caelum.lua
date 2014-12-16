@@ -40,9 +40,8 @@ Caelum = {}
 --                               defaults to zero.
 function Caelum:new(humidity_base_value, temperature_base_value)
 	local instance = {
-		biomes = {},
+		biomes = List:new(),
 		biomes_cache = BlockedCache:new(),
-		biomes_counter = 0,
 		default_biome = nil,
 		humidity = TerraGenitor:new(humidity_base_value),
 		temperature = TerraGenitor:new(temperature_base_value)
@@ -54,18 +53,6 @@ function Caelum:new(humidity_base_value, temperature_base_value)
 	return instance
 end
 
-                                                                                                      
-function Caelum:get_biome(x, z, elevation, humidity, temperature)
-	local biome = self.default_biome
-	
-	for idx = 0, self.biomes_counter - 1, 1 do
-		if self.biomes[idx]:fits(x, z, elevation, humidity, temperature) then
-			biome = self.biomes[idx]
-		end
-	end
-	
-	return biome
-end
 
 function Caelum:get_biome_map(x, z, elevation_map)
 	if self.biomes_cache:is_cached(x, z) then
@@ -85,7 +72,15 @@ function Caelum:get_biome_map(x, z, elevation_map)
 			local humidity = humidity_map[idxx][idxz]
 			local temperature = temperature_map[idxx][idxz]
 			
-			map[idxx][idxz] = self:get_biome(idxx, idxz, elevation, humidity, temperature)
+			local current_biome = self.default_biome
+			
+			self.biomes:foreach(function(biome)
+				if biome:fits(idxx, idxz, elevation, humidity, temperature) then
+					current_biome = biome
+				end
+			end)
+			
+			map[idxx][idxz] = current_biome
 		end
 	end
 	
@@ -108,8 +103,7 @@ function Caelum:init(noise_manager)
 end
 
 function Caelum:register_biome(biome)
-	self.biomes[self.biomes_counter] = biome
-	self.biomes_counter = self.biomes_counter + 1
+	self.biomes:add(biome)
 end
 
 function Caelum:register_humidity_module(module)
