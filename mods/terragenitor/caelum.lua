@@ -44,6 +44,7 @@ function Caelum:new(humidity_base_value, temperature_base_value)
 		biomes_cache = BlockedCache:new(),
 		default_biome = nil,
 		humidity = TerraGenitor:new(humidity_base_value),
+		initialized = false,
 		temperature = TerraGenitor:new(temperature_base_value)
 	}
 	
@@ -54,6 +55,15 @@ function Caelum:new(humidity_base_value, temperature_base_value)
 end
 
 
+--- Gets the map of the biomes for the given x and z coordinate.
+-- The map is a 2D array of biomes with the first dimension being x, and
+-- the second being z, starting at the given coordinates.
+--
+-- @param x The x coordinate.
+-- @param z The z coordinate.
+-- @param elevation_map The 2D array that contains the elevation values
+--                      for the given x and z coordinates.
+-- @return A map with the biomes starting at the given coordinates.
 function Caelum:get_biome_map(x, z, elevation_map)
 	if self.biomes_cache:is_cached(x, z) then
 		return self.biomes_cache:get(x, z)
@@ -89,31 +99,78 @@ function Caelum:get_biome_map(x, z, elevation_map)
 	return map
 end
 
+--- Gets the humidity map for the given coordinates.
+--
+-- @param x The x coordinate.
+-- @param z The z coordinate.
+-- @param elevation_map The 2D array that contains the elevation values
+--                      for the given x and z coordinates.
+-- @return The humidity map, a 2D array of tables containing the values and
+--         infos.
 function Caelum:get_humidity_map(x, z, elevation_map)
 	return self.humidity:get_map(x, z, elevation_map)
 end
 
+--- Gets the temperature map for the given coordinates.
+--
+-- @param x The x coordinate.
+-- @param z The z coordinate.
+-- @param elevation_map The 2D array that contains the elevation values
+--                      for the given x and z coordinates.
+-- @return The temperature map, a 2D array of tables containing the values and
+--         infos.
 function Caelum:get_temperature_map(x, z, elevation_map)
 	return self.temperature:get_map(x, z, elevation_map)
 end
 
+--- Inits this instance and all modules.
+--
+-- Does nothing if this instance is already intialized.
+--
+-- @param noise_manager Optional. The NoiseManager to use for the init. Defaults
+--                      to a new instance if not provided.
 function Caelum:init(noise_manager)
-	self.humidity:init(noise_manager)
-	self.temperature:init(noise_manager)
+	if self:is_initialized() == false then
+		noise_manager = noise_manager or NoiseManager:new()
+		
+		self.humidity:init(noise_manager)
+		self.temperature:init(noise_manager)
+		
+		self.initialized = true
+	end
 end
 
+--- Gets if this instance has been initialized.
+--
+-- @return true if this instance has been initialized.
+function TerraGenitor:is_initialized()
+	return self.initialized
+end
+
+--- Registers the given biome.
+--
+-- @param biome The biome to regiser.
 function Caelum:register_biome(biome)
 	self.biomes:add(biome)
 end
 
+--- Registers the given modile for the humidity map.
+--
+-- @param module The module to register.
 function Caelum:register_humidity_module(module)
 	self.humidity:register(module)
 end
 
+--- Registers the given module for the temperature map.
+--
+-- @param module The module to register.
 function Caelum:register_temperature_module(module)
 	self.temperature:register(module)
 end
 
+--- Sets the default biome that is used if no biomes fits.
+--
+-- @param biome The biome.
 function Caelum:set_default_biome(biome)
 	self.default_biome = biome
 end
