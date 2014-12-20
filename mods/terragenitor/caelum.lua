@@ -143,7 +143,7 @@ end
 --- Gets if this instance has been initialized.
 --
 -- @return true if this instance has been initialized.
-function TerraGenitor:is_initialized()
+function Caelum:is_initialized()
 	return self.initialized
 end
 
