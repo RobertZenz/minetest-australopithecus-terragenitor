@@ -19,22 +19,23 @@ function Flora.get_template_plant()
 end
 
 function Flora.test_biome(plant, biome)
-	if plant.biome ~= nil then
-		if type(plant.biome) == "table" then
-			for idx, value in pairs(plant.biome) do
-				if biome.name == value then
+	if plant.biome_name ~= nil then
+		if type(plant.biome_name) == "table" then
+			for idx, name in pairs(plant.biome_name) do
+				if biome.name == name then
 					return true
 				end
 			end
 			
 			return false
 		else
-			return biome.name == plant.biome
+			return biome.name == plant.biome_name
 		end
 	end
 	
 	return true
 end
+
 function Flora.test_probability(plant, random)
 	if plant.probability < 1 then
 		local probability = transform.linear(random_probability:next(0, 32767), 0, 32767, 0, 1)
