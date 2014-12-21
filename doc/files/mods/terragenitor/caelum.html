@@ -1,0 +1,469 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+   "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html>
+<head>
+    <title>Luadocs for mods/terragenitor//caelum.lua</title>
+    <link rel="stylesheet" href="../../../../luadoc.css" type="text/css" />
+    <!--meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/-->
+</head>
+
+<body>
+<div id="container">
+
+<div id="product">
+    <div id="product_logo"></div>
+    <div id="product_name"><big><b></b></big></div>
+    <div id="product_description"></div>
+</div> <!-- id="product" -->
+
+<div id="main">
+
+<div id="navigation">
+
+
+<h1>LuaDoc</h1>
+<ul>
+	
+	<li><a href="../../../../index.html">Index</a></li>
+	
+</ul>
+
+
+<!-- Module list -->
+
+
+
+<!-- File list -->
+
+<h1>Files</h1>
+<ul>
+
+	<li>
+		<a href="../../../../files/mods/terragenitor//biome.html">mods/terragenitor//biome.lua</a>
+	</li>
+
+	<li><strong>mods/terragenitor//caelum.lua</strong></li>
+	
+	<li>
+		<a href="../../../../files/mods/terragenitor//chisel.html">mods/terragenitor//chisel.lua</a>
+	</li>
+
+	<li>
+		<a href="../../../../files/mods/terragenitor//flora.html">mods/terragenitor//flora.lua</a>
+	</li>
+
+	<li>
+		<a href="../../../../files/mods/terragenitor//init.html">mods/terragenitor//init.lua</a>
+	</li>
+
+	<li>
+		<a href="../../../../files/mods/terragenitor//module.html">mods/terragenitor//module.lua</a>
+	</li>
+
+	<li>
+		<a href="../../../../files/mods/terragenitor//sculptor.html">mods/terragenitor//sculptor.lua</a>
+	</li>
+
+	<li>
+		<a href="../../../../files/mods/terragenitor//terragenitor.html">mods/terragenitor//terragenitor.lua</a>
+	</li>
+
+</ul>
+
+
+
+
+
+
+</div> <!-- id="navigation" -->
+
+<div id="content">
+
+<h1>File <code>mods/terragenitor//caelum.lua</code></h1>
+
+
+
+
+
+
+
+<h2>Functions</h2>
+<table class="function_list">
+
+    <tr>
+    <td class="name" nowrap><a href="#Caelum:get_biome_map">Caelum:get_biome_map</a>&nbsp;(x, z, elevation_map)</td>
+    <td class="summary">Gets the map of the biomes for the given x and z coordinate.</td>
+    </tr>
+
+    <tr>
+    <td class="name" nowrap><a href="#Caelum:get_humidity_map">Caelum:get_humidity_map</a>&nbsp;(x, z, elevation_map)</td>
+    <td class="summary">Gets the humidity map for the given coordinates.</td>
+    </tr>
+
+    <tr>
+    <td class="name" nowrap><a href="#Caelum:get_temperature_map">Caelum:get_temperature_map</a>&nbsp;(x, z, elevation_map)</td>
+    <td class="summary">Gets the temperature map for the given coordinates.</td>
+    </tr>
+
+    <tr>
+    <td class="name" nowrap><a href="#Caelum:init">Caelum:init</a>&nbsp;(noise_manager)</td>
+    <td class="summary">Inits this instance and all modules.</td>
+    </tr>
+
+    <tr>
+    <td class="name" nowrap><a href="#Caelum:is_initialized">Caelum:is_initialized</a>&nbsp;()</td>
+    <td class="summary">Gets if this instance has been initialized.</td>
+    </tr>
+
+    <tr>
+    <td class="name" nowrap><a href="#Caelum:new">Caelum:new</a>&nbsp;(humidity_base_value, temperature_base_value)</td>
+    <td class="summary">Creates a new instance of Caelum.</td>
+    </tr>
+
+    <tr>
+    <td class="name" nowrap><a href="#Caelum:register_biome">Caelum:register_biome</a>&nbsp;(biome)</td>
+    <td class="summary">Registers the given biome.</td>
+    </tr>
+
+    <tr>
+    <td class="name" nowrap><a href="#Caelum:register_humidity_module">Caelum:register_humidity_module</a>&nbsp;(module)</td>
+    <td class="summary">Registers the given modile for the humidity map.</td>
+    </tr>
+
+    <tr>
+    <td class="name" nowrap><a href="#Caelum:register_temperature_module">Caelum:register_temperature_module</a>&nbsp;(module)</td>
+    <td class="summary">Registers the given module for the temperature map.</td>
+    </tr>
+
+    <tr>
+    <td class="name" nowrap><a href="#Caelum:set_default_biome">Caelum:set_default_biome</a>&nbsp;(biome)</td>
+    <td class="summary">Sets the default biome that is used if no biomes fits.</td>
+    </tr>
+
+</table>
+
+
+
+
+
+
+<br/>
+<br/>
+
+
+
+
+<h2><a name="functions"></a>Functions</h2>
+<dl class="function">
+
+
+
+<dt><a name="Caelum:get_biome_map"></a><strong>Caelum:get_biome_map</strong>&nbsp;(x, z, elevation_map)</dt>
+<dd>
+Gets the map of the biomes for the given x and z coordinate. The map is a 2D array of biomes with the first dimension being x, and the second being z, starting at the given coordinates. 
+
+
+<h3>Parameters</h3>
+<ul>
+	
+	<li>
+	  x: The x coordinate.
+	</li>
+	
+	<li>
+	  z: The z coordinate.
+	</li>
+	
+	<li>
+	  elevation_map: The 2D array that contains the elevation values for the given x and z coordinates.
+	</li>
+	
+</ul>
+
+
+
+
+
+
+<h3>Return value:</h3>
+A map with the biomes starting at the given coordinates.
+
+
+
+</dd>
+
+
+
+
+<dt><a name="Caelum:get_humidity_map"></a><strong>Caelum:get_humidity_map</strong>&nbsp;(x, z, elevation_map)</dt>
+<dd>
+Gets the humidity map for the given coordinates. 
+
+
+<h3>Parameters</h3>
+<ul>
+	
+	<li>
+	  x: The x coordinate.
+	</li>
+	
+	<li>
+	  z: The z coordinate.
+	</li>
+	
+	<li>
+	  elevation_map: The 2D array that contains the elevation values for the given x and z coordinates.
+	</li>
+	
+</ul>
+
+
+
+
+
+
+<h3>Return value:</h3>
+The humidity map, a 2D array of tables containing the values and infos.
+
+
+
+</dd>
+
+
+
+
+<dt><a name="Caelum:get_temperature_map"></a><strong>Caelum:get_temperature_map</strong>&nbsp;(x, z, elevation_map)</dt>
+<dd>
+Gets the temperature map for the given coordinates. 
+
+
+<h3>Parameters</h3>
+<ul>
+	
+	<li>
+	  x: The x coordinate.
+	</li>
+	
+	<li>
+	  z: The z coordinate.
+	</li>
+	
+	<li>
+	  elevation_map: The 2D array that contains the elevation values for the given x and z coordinates.
+	</li>
+	
+</ul>
+
+
+
+
+
+
+<h3>Return value:</h3>
+The temperature map, a 2D array of tables containing the values and infos.
+
+
+
+</dd>
+
+
+
+
+<dt><a name="Caelum:init"></a><strong>Caelum:init</strong>&nbsp;(noise_manager)</dt>
+<dd>
+Inits this instance and all modules.  Does nothing if this instance is already intialized. 
+
+
+<h3>Parameters</h3>
+<ul>
+	
+	<li>
+	  noise_manager: Optional. The NoiseManager to use for the init. Defaults to a new instance if not provided.
+	</li>
+	
+</ul>
+
+
+
+
+
+
+
+
+</dd>
+
+
+
+
+<dt><a name="Caelum:is_initialized"></a><strong>Caelum:is_initialized</strong>&nbsp;()</dt>
+<dd>
+Gets if this instance has been initialized. 
+
+
+
+
+
+
+
+<h3>Return value:</h3>
+true if this instance has been initialized.
+
+
+
+</dd>
+
+
+
+
+<dt><a name="Caelum:new"></a><strong>Caelum:new</strong>&nbsp;(humidity_base_value, temperature_base_value)</dt>
+<dd>
+Creates a new instance of Caelum. 
+
+
+<h3>Parameters</h3>
+<ul>
+	
+	<li>
+	  humidity_base_value: Optional. The abse value for humidity, defaults to zero.
+	</li>
+	
+	<li>
+	  temperature_base_value: Optional. The abse value for temperature, defaults to zero.
+	</li>
+	
+</ul>
+
+
+
+
+
+
+
+
+</dd>
+
+
+
+
+<dt><a name="Caelum:register_biome"></a><strong>Caelum:register_biome</strong>&nbsp;(biome)</dt>
+<dd>
+Registers the given biome. 
+
+
+<h3>Parameters</h3>
+<ul>
+	
+	<li>
+	  biome: The biome to regiser.
+	</li>
+	
+</ul>
+
+
+
+
+
+
+
+
+</dd>
+
+
+
+
+<dt><a name="Caelum:register_humidity_module"></a><strong>Caelum:register_humidity_module</strong>&nbsp;(module)</dt>
+<dd>
+Registers the given modile for the humidity map. 
+
+
+<h3>Parameters</h3>
+<ul>
+	
+	<li>
+	  module: The module to register.
+	</li>
+	
+</ul>
+
+
+
+
+
+
+
+
+</dd>
+
+
+
+
+<dt><a name="Caelum:register_temperature_module"></a><strong>Caelum:register_temperature_module</strong>&nbsp;(module)</dt>
+<dd>
+Registers the given module for the temperature map. 
+
+
+<h3>Parameters</h3>
+<ul>
+	
+	<li>
+	  module: The module to register.
+	</li>
+	
+</ul>
+
+
+
+
+
+
+
+
+</dd>
+
+
+
+
+<dt><a name="Caelum:set_default_biome"></a><strong>Caelum:set_default_biome</strong>&nbsp;(biome)</dt>
+<dd>
+Sets the default biome that is used if no biomes fits. 
+
+
+<h3>Parameters</h3>
+<ul>
+	
+	<li>
+	  biome: The biome.
+	</li>
+	
+</ul>
+
+
+
+
+
+
+
+
+</dd>
+
+
+</dl>
+
+
+
+
+
+
+
+</div> <!-- id="content" -->
+
+</div> <!-- id="main" -->
+
+<div id="about">
+    <p><a href="http://validator.w3.org/check?uri=referer"><img src="http://www.w3.org/Icons/valid-xhtml10" alt="Valid XHTML 1.0!" height="31" width="88" /></a></p>
+</div> <!-- id="about" -->
+
+</div> <!-- id="container" -->
+</body>
+</html>

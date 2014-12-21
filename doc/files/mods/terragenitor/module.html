@@ -1,0 +1,269 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+   "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html>
+<head>
+    <title>Luadocs for mods/terragenitor//module.lua</title>
+    <link rel="stylesheet" href="../../../../luadoc.css" type="text/css" />
+    <!--meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/-->
+</head>
+
+<body>
+<div id="container">
+
+<div id="product">
+    <div id="product_logo"></div>
+    <div id="product_name"><big><b></b></big></div>
+    <div id="product_description"></div>
+</div> <!-- id="product" -->
+
+<div id="main">
+
+<div id="navigation">
+
+
+<h1>LuaDoc</h1>
+<ul>
+	
+	<li><a href="../../../../index.html">Index</a></li>
+	
+</ul>
+
+
+<!-- Module list -->
+
+
+
+<!-- File list -->
+
+<h1>Files</h1>
+<ul>
+
+	<li>
+		<a href="../../../../files/mods/terragenitor//biome.html">mods/terragenitor//biome.lua</a>
+	</li>
+
+	<li>
+		<a href="../../../../files/mods/terragenitor//caelum.html">mods/terragenitor//caelum.lua</a>
+	</li>
+
+	<li>
+		<a href="../../../../files/mods/terragenitor//chisel.html">mods/terragenitor//chisel.lua</a>
+	</li>
+
+	<li>
+		<a href="../../../../files/mods/terragenitor//flora.html">mods/terragenitor//flora.lua</a>
+	</li>
+
+	<li>
+		<a href="../../../../files/mods/terragenitor//init.html">mods/terragenitor//init.lua</a>
+	</li>
+
+	<li><strong>mods/terragenitor//module.lua</strong></li>
+	
+	<li>
+		<a href="../../../../files/mods/terragenitor//sculptor.html">mods/terragenitor//sculptor.lua</a>
+	</li>
+
+	<li>
+		<a href="../../../../files/mods/terragenitor//terragenitor.html">mods/terragenitor//terragenitor.lua</a>
+	</li>
+
+</ul>
+
+
+
+
+
+
+</div> <!-- id="navigation" -->
+
+<div id="content">
+
+<h1>File <code>mods/terragenitor//module.lua</code></h1>
+
+
+
+
+
+
+
+<h2>Functions</h2>
+<table class="function_list">
+
+    <tr>
+    <td class="name" nowrap><a href="#Module:get">Module:get</a>&nbsp;(x, z, value, info, support)</td>
+    <td class="summary">Gets the value and info from this Module.</td>
+    </tr>
+
+    <tr>
+    <td class="name" nowrap><a href="#Module:init">Module:init</a>&nbsp;(noise_manager)</td>
+    <td class="summary">The init method is called when TerraGenitor's init method is called.</td>
+    </tr>
+
+    <tr>
+    <td class="name" nowrap><a href="#Module:init_map">Module:init_map</a>&nbsp;(x, z)</td>
+    <td class="summary">The init_map method is called before values for a certain segment of the map are requested.</td>
+    </tr>
+
+    <tr>
+    <td class="name" nowrap><a href="#Module:new">Module:new</a>&nbsp;()</td>
+    <td class="summary">Creates a new instance of Module.</td>
+    </tr>
+
+</table>
+
+
+
+
+
+
+<br/>
+<br/>
+
+
+
+
+<h2><a name="functions"></a>Functions</h2>
+<dl class="function">
+
+
+
+<dt><a name="Module:get"></a><strong>Module:get</strong>&nbsp;(x, z, value, info, support)</dt>
+<dd>
+Gets the value and info from this Module.  The info object is an undefined table, which allows each module to save individual information. 
+
+
+<h3>Parameters</h3>
+<ul>
+	
+	<li>
+	  x: The x coordinate.
+	</li>
+	
+	<li>
+	  z: The z coordinate.
+	</li>
+	
+	<li>
+	  value: The base value.
+	</li>
+	
+	<li>
+	  info: The info object.
+	</li>
+	
+	<li>
+	  support: Optional. The support object that provides additional additional information for the module. The format of this is not defined.
+	</li>
+	
+</ul>
+
+
+
+
+
+
+<h3>Return value:</h3>
+The value and the info object.
+
+
+
+</dd>
+
+
+
+
+<dt><a name="Module:init"></a><strong>Module:init</strong>&nbsp;(noise_manager)</dt>
+<dd>
+The init method is called when TerraGenitor's init method is called. It is only called once right at the beginning. 
+
+
+<h3>Parameters</h3>
+<ul>
+	
+	<li>
+	  noise_manager: The NoiseManager that is used.
+	</li>
+	
+</ul>
+
+
+
+
+
+
+
+
+</dd>
+
+
+
+
+<dt><a name="Module:init_map"></a><strong>Module:init_map</strong>&nbsp;(x, z)</dt>
+<dd>
+The init_map method is called before values for a certain segment of the map are requested. 
+
+
+<h3>Parameters</h3>
+<ul>
+	
+	<li>
+	  x: The x coordinate of the block.
+	</li>
+	
+	<li>
+	  z: The z coordiante of the block.
+	</li>
+	
+</ul>
+
+
+
+
+
+
+
+
+</dd>
+
+
+
+
+<dt><a name="Module:new"></a><strong>Module:new</strong>&nbsp;()</dt>
+<dd>
+Creates a new instance of Module.
+
+
+
+
+
+
+
+<h3>Return value:</h3>
+A new instance of Module.
+
+
+
+</dd>
+
+
+</dl>
+
+
+
+
+
+
+
+</div> <!-- id="content" -->
+
+</div> <!-- id="main" -->
+
+<div id="about">
+    <p><a href="http://validator.w3.org/check?uri=referer"><img src="http://www.w3.org/Icons/valid-xhtml10" alt="Valid XHTML 1.0!" height="31" width="88" /></a></p>
+</div> <!-- id="about" -->
+
+</div> <!-- id="container" -->
+</body>
+</html>

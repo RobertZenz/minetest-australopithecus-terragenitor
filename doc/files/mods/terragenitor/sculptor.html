@@ -1,0 +1,291 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+   "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html>
+<head>
+    <title>Luadocs for mods/terragenitor//sculptor.lua</title>
+    <link rel="stylesheet" href="../../../../luadoc.css" type="text/css" />
+    <!--meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/-->
+</head>
+
+<body>
+<div id="container">
+
+<div id="product">
+    <div id="product_logo"></div>
+    <div id="product_name"><big><b></b></big></div>
+    <div id="product_description"></div>
+</div> <!-- id="product" -->
+
+<div id="main">
+
+<div id="navigation">
+
+
+<h1>LuaDoc</h1>
+<ul>
+	
+	<li><a href="../../../../index.html">Index</a></li>
+	
+</ul>
+
+
+<!-- Module list -->
+
+
+
+<!-- File list -->
+
+<h1>Files</h1>
+<ul>
+
+	<li>
+		<a href="../../../../files/mods/terragenitor//biome.html">mods/terragenitor//biome.lua</a>
+	</li>
+
+	<li>
+		<a href="../../../../files/mods/terragenitor//caelum.html">mods/terragenitor//caelum.lua</a>
+	</li>
+
+	<li>
+		<a href="../../../../files/mods/terragenitor//chisel.html">mods/terragenitor//chisel.lua</a>
+	</li>
+
+	<li>
+		<a href="../../../../files/mods/terragenitor//flora.html">mods/terragenitor//flora.lua</a>
+	</li>
+
+	<li>
+		<a href="../../../../files/mods/terragenitor//init.html">mods/terragenitor//init.lua</a>
+	</li>
+
+	<li>
+		<a href="../../../../files/mods/terragenitor//module.html">mods/terragenitor//module.lua</a>
+	</li>
+
+	<li><strong>mods/terragenitor//sculptor.lua</strong></li>
+	
+	<li>
+		<a href="../../../../files/mods/terragenitor//terragenitor.html">mods/terragenitor//terragenitor.lua</a>
+	</li>
+
+</ul>
+
+
+
+
+
+
+</div> <!-- id="navigation" -->
+
+<div id="content">
+
+<h1>File <code>mods/terragenitor//sculptor.lua</code></h1>
+
+
+
+
+
+
+
+<h2>Functions</h2>
+<table class="function_list">
+
+    <tr>
+    <td class="name" nowrap><a href="#Sculptor:init">Sculptor:init</a>&nbsp;(noise_manager)</td>
+    <td class="summary">Inits this instance and all chisels.</td>
+    </tr>
+
+    <tr>
+    <td class="name" nowrap><a href="#Sculptor:is_initialized">Sculptor:is_initialized</a>&nbsp;()</td>
+    <td class="summary">Gets if this instance has been initialized.</td>
+    </tr>
+
+    <tr>
+    <td class="name" nowrap><a href="#Sculptor:new">Sculptor:new</a>&nbsp;()</td>
+    <td class="summary">Creates a new instance of Sculptor.</td>
+    </tr>
+
+    <tr>
+    <td class="name" nowrap><a href="#Sculptor:register">Sculptor:register</a>&nbsp;(chisel)</td>
+    <td class="summary">Register the given chisel.</td>
+    </tr>
+
+    <tr>
+    <td class="name" nowrap><a href="#Sculptor:sculpt">Sculptor:sculpt</a>&nbsp;(x, y, z, data, area, support)</td>
+    <td class="summary">Sculpts the given data by calling all chisels on it.</td>
+    </tr>
+
+</table>
+
+
+
+
+
+
+<br/>
+<br/>
+
+
+
+
+<h2><a name="functions"></a>Functions</h2>
+<dl class="function">
+
+
+
+<dt><a name="Sculptor:init"></a><strong>Sculptor:init</strong>&nbsp;(noise_manager)</dt>
+<dd>
+Inits this instance and all chisels.  Does nothing if this instance is already intialized. 
+
+
+<h3>Parameters</h3>
+<ul>
+	
+	<li>
+	  noise_manager: Optional. The NoiseManager to use for the init. Defaults to a new instance if not provided.
+	</li>
+	
+</ul>
+
+
+
+
+
+
+
+
+</dd>
+
+
+
+
+<dt><a name="Sculptor:is_initialized"></a><strong>Sculptor:is_initialized</strong>&nbsp;()</dt>
+<dd>
+Gets if this instance has been initialized. 
+
+
+
+
+
+
+
+<h3>Return value:</h3>
+true if this instance has been initialized.
+
+
+
+</dd>
+
+
+
+
+<dt><a name="Sculptor:new"></a><strong>Sculptor:new</strong>&nbsp;()</dt>
+<dd>
+Creates a new instance of Sculptor.
+
+
+
+
+
+
+
+
+
+</dd>
+
+
+
+
+<dt><a name="Sculptor:register"></a><strong>Sculptor:register</strong>&nbsp;(chisel)</dt>
+<dd>
+Register the given chisel.  Chisels should be registered before the init method is called, otherwise the chisels will not be initialized by Sculptor. 
+
+
+<h3>Parameters</h3>
+<ul>
+	
+	<li>
+	  chisel: The chisel to register.
+	</li>
+	
+</ul>
+
+
+
+
+
+
+
+
+</dd>
+
+
+
+
+<dt><a name="Sculptor:sculpt"></a><strong>Sculptor:sculpt</strong>&nbsp;(x, y, z, data, area, support)</dt>
+<dd>
+Sculpts the given data by calling all chisels on it. 
+
+
+<h3>Parameters</h3>
+<ul>
+	
+	<li>
+	  x: The x coordinate.
+	</li>
+	
+	<li>
+	  y: The y coordinate.
+	</li>
+	
+	<li>
+	  z: The z coordinate.
+	</li>
+	
+	<li>
+	  data: The data which should be changed.
+	</li>
+	
+	<li>
+	  area: The area associated with the given data.
+	</li>
+	
+	<li>
+	  support: Optional. The support object that provides additional information for the chisels. The format is not defined.
+	</li>
+	
+</ul>
+
+
+
+
+
+
+<h3>Return value:</h3>
+The same data object as given.
+
+
+
+</dd>
+
+
+</dl>
+
+
+
+
+
+
+
+</div> <!-- id="content" -->
+
+</div> <!-- id="main" -->
+
+<div id="about">
+    <p><a href="http://validator.w3.org/check?uri=referer"><img src="http://www.w3.org/Icons/valid-xhtml10" alt="Valid XHTML 1.0!" height="31" width="88" /></a></p>
+</div> <!-- id="about" -->
+
+</div> <!-- id="container" -->
+</body>
+</html>
