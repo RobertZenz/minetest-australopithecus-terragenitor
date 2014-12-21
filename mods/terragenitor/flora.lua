@@ -1,18 +1,6 @@
 Flora = {}
 
 
-function Flora.check_surroundings(map, x, z, plant)
-	for idxx = x - plant.distance, x + plant.distance, 1 do
-		for idxz = z - plant.distance, z + plant.distance, 1 do
-			if map[idxx] ~= nil and map[idxx][idxz] == plant then
-				return true
-			end
-		end
-	end
-	
-	return false
-end
-
 function Flora.get_template_plant()
 	return {
 		biome_name = nil,
@@ -30,11 +18,35 @@ function Flora.get_template_plant()
 	}
 end
 
-function Flora.plant_fits(plant, elevation, humidity, temperature, vegetation)
+function Flora.test_probability(plant, random)
+	if plant.probability < 1 then
+		local probability = transform.linear(random_probability:next(0, 32767), 0, 32767, 0, 1)
+				
+		return plant.probability >= probability
+	end
+	
+	return true
+end
+
+function Flora.test_fits(plant, elevation, humidity, temperature, vegetation)
 	return elevation >= plant.min_elevation and elevation < plant.max_elevation
 		and humidity >= plant.min_humidity and humidity < plant.max_humidity
 		and temperature >= plant.min_temperature and temperature < plant.max_temperature
 		and vegetation >= plant.min_vegetation and vegetation < plant.max_vegetation
+end
+
+function Flora.test_surroundings(plant, map, x, z)
+	if plant.distance > 0 then
+		for idxx = x - plant.distance, x + plant.distance, 1 do
+			for idxz = z - plant.distance, z + plant.distance, 1 do
+				if map[idxx] ~= nil and map[idxx][idxz] == plant then
+					return false
+				end
+			end
+		end
+	end
+	
+	return true
 end
 
 
@@ -88,12 +100,9 @@ function Flora:get_plant_map(x, z, seed, biome_map, elevation_map, humidity_map,
 		local current_plant = self.default_plant
 		
 		self.plants:foreach(function(plant)
-			if Flora.plant_fits(plant, elevation, humidity, temperature, vegetation) then
-				
-				local probability = transform.linear(random_probability:next(0, 32767), 0, 32767, 0, 1)
-				
-				if plant.probability >= probability then
-					if plant.distance <= 0 or not Flora.check_surroundings(map, item.x, item.z, plant) then
+			if Flora.test_fits(plant, elevation, humidity, temperature, vegetation) then
+				if Flora.test_probability(plant, random_probability) then
+					if Flora.test_surroundings(plant, map, item.x, item.z) then
 						current_plant = plant
 					end
 				end
