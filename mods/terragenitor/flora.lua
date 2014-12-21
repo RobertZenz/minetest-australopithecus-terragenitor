@@ -18,6 +18,23 @@ function Flora.get_template_plant()
 	}
 end
 
+function Flora.test_biome(plant, biome)
+	if plant.biome ~= nil then
+		if type(plant.biome) == "table" then
+			for idx, value in pairs(plant.biome) do
+				if biome.name == value then
+					return true
+				end
+			end
+			
+			return false
+		else
+			return biome.name == plant.biome
+		end
+	end
+	
+	return true
+end
 function Flora.test_probability(plant, random)
 	if plant.probability < 1 then
 		local probability = transform.linear(random_probability:next(0, 32767), 0, 32767, 0, 1)
@@ -100,12 +117,12 @@ function Flora:get_plant_map(x, z, seed, biome_map, elevation_map, humidity_map,
 		local current_plant = self.default_plant
 		
 		self.plants:foreach(function(plant)
-			if Flora.test_fits(plant, elevation, humidity, temperature, vegetation) then
-				if Flora.test_probability(plant, random_probability) then
-					if Flora.test_surroundings(plant, map, item.x, item.z) then
-						current_plant = plant
-					end
-				end
+			if Flora.test_fits(plant, elevation, humidity, temperature, vegetation)
+				and Flora.test_biome(plant, biome)
+				and Flora.test_probability(plant, random_probability)
+				and Flora.test_surroundings(plant, map, item.x, item.z) then
+				
+				current_plant = plant
 			end
 		end)
 		
