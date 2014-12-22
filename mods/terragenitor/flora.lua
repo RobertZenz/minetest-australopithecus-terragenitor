@@ -38,7 +38,7 @@ end
 
 function Flora.test_probability(plant, random)
 	if plant.probability < 1 then
-		local probability = transform.linear(random_probability:next(0, 32767), 0, 32767, 0, 1)
+		local probability = transform.linear(random:next(0, 32767), 0, 32767, 0, 1)
 				
 		return plant.probability >= probability
 	end
