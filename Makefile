@@ -9,5 +9,5 @@ clean:
 
 .PHONY: doc
 doc:
-	luadoc -d $(doc) mods/terragenitor/
+	luadoc -d $(doc) mods/terragenitor
 
