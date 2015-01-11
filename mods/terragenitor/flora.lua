@@ -5,6 +5,8 @@ function Flora.get_template_plant()
 	return {
 		biome_name = nil,
 		distance = 0,
+		distance_max = nil,
+		distance_min = nil,
 		max_elevation = 31000,
 		max_humidity = 31000,
 		max_temperature = 31000,
@@ -53,10 +55,17 @@ function Flora.test_fits(plant, elevation, humidity, temperature, vegetation)
 		and vegetation >= plant.min_vegetation and vegetation < plant.max_vegetation
 end
 
-function Flora.test_surroundings(plant, map, x, z)
-	if plant.distance > 0 then
-		for idxx = x - plant.distance, x + plant.distance, 1 do
-			for idxz = z - plant.distance, z + plant.distance, 1 do
+function Flora.test_surroundings(plant, map, x, z, random)
+	local distance = plant.distance
+	
+	if plant.distance_min ~= nil and plant.distance_max ~= nil then
+		distance = transform.linear(random:next(0, 32767), 0, 32767, plant.distance_min, plant.distance_max)
+		distance = mathutil.round(distance)
+	end
+	
+	if distance > 0 then
+		for idxx = x - distance, x + distance, 1 do
+			for idxz = z - distance, z + distance, 1 do
 				if map[idxx] ~= nil and map[idxx][idxz] == plant then
 					return false
 				end
@@ -95,6 +104,7 @@ function Flora:get_plant_map(x, z, seed, biome_map, elevation_map, humidity_map,
 		temperature_map = temperature_map
 	})
 	
+	local random_distance = PseudoRandom(seed)
 	local random_probability = PseudoRandom(seed)
 	local random_fisher_yates = PseudoRandom(seed)
 	local map = {}
@@ -121,7 +131,7 @@ function Flora:get_plant_map(x, z, seed, biome_map, elevation_map, humidity_map,
 			if Flora.test_fits(plant, elevation, humidity, temperature, vegetation)
 				and Flora.test_biome(plant, biome)
 				and Flora.test_probability(plant, random_probability)
-				and Flora.test_surroundings(plant, map, item.x, item.z) then
+				and Flora.test_surroundings(plant, map, item.x, item.z, random_distance) then
 				
 				current_plant = plant
 			end
