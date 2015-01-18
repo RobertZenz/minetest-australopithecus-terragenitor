@@ -255,7 +255,7 @@ Register the given module.  Modules should be registered before the init method 
 <ul>
 	
 	<li>
-	  module: The module to register.
+	  module: The module to register. Can also be a function with the same signature as the get function in the module, which is function(self, x, z, value, info, support).
 	</li>
 	
 </ul>

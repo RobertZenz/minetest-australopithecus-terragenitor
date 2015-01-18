@@ -136,8 +136,16 @@ end
 -- Modules should be registered before the init method is called, otherwise
 -- the modules will not be initialized by TerraGenitor.
 --
--- @param module The module to register.
+-- @param module The module to register. Can also be a function with the same
+--               signature as the get function in the module, which is
+--               function(self, x, z, value, info, support).
 function TerraGenitor:register(module)
-	self.modules:add(module)
+	if type(module) == "function" then
+		local container = Module:new()
+		container.get = module
+		self.modules:add(container)
+	else
+		self.modules:add(module)
+	end
 end
 
