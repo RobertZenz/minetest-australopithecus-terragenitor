@@ -37,3 +37,11 @@ dofile(base_path .. "/module.lua")
 dofile(base_path .. "/sculptor.lua")
 dofile(base_path .. "/terragenitor.lua")
 
+
+local modules_path = base_path .. "/modules"
+
+dofile(modules_path .. "/dualnoisemodule.lua")
+dofile(modules_path .. "/maskedridgedmodule.lua")
+dofile(modules_path .. "/roundingmodule.lua")
+dofile(modules_path .. "/singlenoisemodule.lua")
+
