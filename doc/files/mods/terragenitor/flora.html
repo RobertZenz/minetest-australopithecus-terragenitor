@@ -62,6 +62,22 @@
 	</li>
 
 	<li>
+		<a href="../../../files/mods/terragenitor/modules/dualnoisemodule.html">mods/terragenitor/modules/dualnoisemodule.lua</a>
+	</li>
+
+	<li>
+		<a href="../../../files/mods/terragenitor/modules/maskedridgedmodule.html">mods/terragenitor/modules/maskedridgedmodule.lua</a>
+	</li>
+
+	<li>
+		<a href="../../../files/mods/terragenitor/modules/roundingmodule.html">mods/terragenitor/modules/roundingmodule.lua</a>
+	</li>
+
+	<li>
+		<a href="../../../files/mods/terragenitor/modules/singlenoisemodule.html">mods/terragenitor/modules/singlenoisemodule.lua</a>
+	</li>
+
+	<li>
 		<a href="../../../files/mods/terragenitor/sculptor.html">mods/terragenitor/sculptor.lua</a>
 	</li>
 
@@ -88,6 +104,71 @@
 
 
 
+<h2>Functions</h2>
+<table class="function_list">
+
+    <tr>
+    <td class="name" nowrap><a href="#Flora.get_template_plant">Flora.get_template_plant</a>&nbsp;()</td>
+    <td class="summary">Gets the template/empty plant.</td>
+    </tr>
+
+    <tr>
+    <td class="name" nowrap><a href="#Flora.test_biome">Flora.test_biome</a>&nbsp;(plant, biome)</td>
+    <td class="summary">Tests if the given plant does accept the given biome.</td>
+    </tr>
+
+    <tr>
+    <td class="name" nowrap><a href="#Flora.test_fits">Flora.test_fits</a>&nbsp;(plant, elevation, humidity, temperature, vegetation)</td>
+    <td class="summary">Tests if the plant does fit into the given environment, checking the elevation, humidity, temperature and vegetation value.</td>
+    </tr>
+
+    <tr>
+    <td class="name" nowrap><a href="#Flora.test_probability">Flora.test_probability</a>&nbsp;(plant, random)</td>
+    <td class="summary">Tests if the given plant can appear here.</td>
+    </tr>
+
+    <tr>
+    <td class="name" nowrap><a href="#Flora.test_surroundings">Flora.test_surroundings</a>&nbsp;(plant, map, x, z, random)</td>
+    <td class="summary">Tests if there are any other plants of the same type in the surroundings.</td>
+    </tr>
+
+    <tr>
+    <td class="name" nowrap><a href="#Flora:get_plant_map">Flora:get_plant_map</a>&nbsp;(x, z, seed, biome_map, elevation_map, humidity_map, temperature_map)</td>
+    <td class="summary">Gets the plant map for the given x and z coordinate.</td>
+    </tr>
+
+    <tr>
+    <td class="name" nowrap><a href="#Flora:init">Flora:init</a>&nbsp;(noise_manager)</td>
+    <td class="summary">Inits this instance and all modules.</td>
+    </tr>
+
+    <tr>
+    <td class="name" nowrap><a href="#Flora:is_initialized">Flora:is_initialized</a>&nbsp;()</td>
+    <td class="summary">Gets if this instance has been initialized.</td>
+    </tr>
+
+    <tr>
+    <td class="name" nowrap><a href="#Flora:new">Flora:new</a>&nbsp;()</td>
+    <td class="summary">Creates a new instance of Flora.</td>
+    </tr>
+
+    <tr>
+    <td class="name" nowrap><a href="#Flora:register_plant">Flora:register_plant</a>&nbsp;(plant)</td>
+    <td class="summary">Registers the gviven plant.</td>
+    </tr>
+
+    <tr>
+    <td class="name" nowrap><a href="#Flora:register_vegetation">Flora:register_vegetation</a>&nbsp;(module)</td>
+    <td class="summary">Registers the given vegetation module.</td>
+    </tr>
+
+    <tr>
+    <td class="name" nowrap><a href="#Flora:set_default_plant">Flora:set_default_plant</a>&nbsp;(plant)</td>
+    <td class="summary">Sets the default plant.</td>
+    </tr>
+
+</table>
+
 
 
 
@@ -98,6 +179,381 @@
 
 
 
+
+<h2><a name="functions"></a>Functions</h2>
+<dl class="function">
+
+
+
+<dt><a name="Flora.get_template_plant"></a><strong>Flora.get_template_plant</strong>&nbsp;()</dt>
+<dd>
+Gets the template/empty plant.
+
+
+
+
+
+
+
+
+
+</dd>
+
+
+
+
+<dt><a name="Flora.test_biome"></a><strong>Flora.test_biome</strong>&nbsp;(plant, biome)</dt>
+<dd>
+Tests if the given plant does accept the given biome. 
+
+
+<h3>Parameters</h3>
+<ul>
+	
+	<li>
+	  plant: The plant to test.
+	</li>
+	
+	<li>
+	  biome: The biome to test against.
+	</li>
+	
+</ul>
+
+
+
+
+
+
+<h3>Return value:</h3>
+true if the plant fits in the given biome.
+
+
+
+</dd>
+
+
+
+
+<dt><a name="Flora.test_fits"></a><strong>Flora.test_fits</strong>&nbsp;(plant, elevation, humidity, temperature, vegetation)</dt>
+<dd>
+Tests if the plant does fit into the given environment, checking the elevation, humidity, temperature and vegetation value. 
+
+
+<h3>Parameters</h3>
+<ul>
+	
+	<li>
+	  plant: The plant to test.
+	</li>
+	
+	<li>
+	  elevation: The elevation value.
+	</li>
+	
+	<li>
+	  humidity: The humidity value.
+	</li>
+	
+	<li>
+	  temperature: The temperature value.
+	</li>
+	
+	<li>
+	  vegetation: The vegetation value.
+	</li>
+	
+</ul>
+
+
+
+
+
+
+<h3>Return value:</h3>
+true if the plant fits here.
+
+
+
+</dd>
+
+
+
+
+<dt><a name="Flora.test_probability"></a><strong>Flora.test_probability</strong>&nbsp;(plant, random)</dt>
+<dd>
+Tests if the given plant can appear here. 
+
+
+<h3>Parameters</h3>
+<ul>
+	
+	<li>
+	  plant: The plant to test.
+	</li>
+	
+	<li>
+	  random: The PseudoRandom object that is used for the probability.
+	</li>
+	
+</ul>
+
+
+
+
+
+
+<h3>Return value:</h3>
+true if the plant can be placed here.
+
+
+
+</dd>
+
+
+
+
+<dt><a name="Flora.test_surroundings"></a><strong>Flora.test_surroundings</strong>&nbsp;(plant, map, x, z, random)</dt>
+<dd>
+Tests if there are any other plants of the same type in the surroundings. 
+
+
+<h3>Parameters</h3>
+<ul>
+	
+	<li>
+	  plant: The plant to test.
+	</li>
+	
+	<li>
+	  map: The current map which holds all plants.
+	</li>
+	
+	<li>
+	  x: The current x coordinate.
+	</li>
+	
+	<li>
+	  z: The current y coordinate.
+	</li>
+	
+	<li>
+	  random: The PseudoRandom object that is used for determining the distance to check,
+	</li>
+	
+</ul>
+
+
+
+
+
+
+<h3>Return value:</h3>
+true if there are no other plants in the surroundings.
+
+
+
+</dd>
+
+
+
+
+<dt><a name="Flora:get_plant_map"></a><strong>Flora:get_plant_map</strong>&nbsp;(x, z, seed, biome_map, elevation_map, humidity_map, temperature_map)</dt>
+<dd>
+Gets the plant map for the given x and z coordinate. The map is a 2D array/table, with the first dimension being x, the second being z starting at the given values. 
+
+
+<h3>Parameters</h3>
+<ul>
+	
+	<li>
+	  x: The x coordinate.
+	</li>
+	
+	<li>
+	  z: The z coordinate.
+	</li>
+	
+	<li>
+	  seed: The seed of the current block.
+	</li>
+	
+	<li>
+	  biome_map: The biome map.
+	</li>
+	
+	<li>
+	  elevation_map: The elevation map.
+	</li>
+	
+	<li>
+	  humidity_map: The humidity map.
+	</li>
+	
+	<li>
+	  temperature_map: The temperature map.
+	</li>
+	
+</ul>
+
+
+
+
+
+
+<h3>Return value:</h3>
+The 2D array/map with the plants in it.
+
+
+
+</dd>
+
+
+
+
+<dt><a name="Flora:init"></a><strong>Flora:init</strong>&nbsp;(noise_manager)</dt>
+<dd>
+Inits this instance and all modules.  Does nothing if this instance is already intialized. 
+
+
+<h3>Parameters</h3>
+<ul>
+	
+	<li>
+	  noise_manager: Optional. The NoiseManager to use for the init. Defaults to a new instance if not provided.
+	</li>
+	
+</ul>
+
+
+
+
+
+
+
+
+</dd>
+
+
+
+
+<dt><a name="Flora:is_initialized"></a><strong>Flora:is_initialized</strong>&nbsp;()</dt>
+<dd>
+Gets if this instance has been initialized. 
+
+
+
+
+
+
+
+<h3>Return value:</h3>
+true if this instance has been initialized.
+
+
+
+</dd>
+
+
+
+
+<dt><a name="Flora:new"></a><strong>Flora:new</strong>&nbsp;()</dt>
+<dd>
+Creates a new instance of Flora. 
+
+
+
+
+
+
+
+<h3>Return value:</h3>
+A new instance of Flora.
+
+
+
+</dd>
+
+
+
+
+<dt><a name="Flora:register_plant"></a><strong>Flora:register_plant</strong>&nbsp;(plant)</dt>
+<dd>
+Registers the gviven plant. 
+
+
+<h3>Parameters</h3>
+<ul>
+	
+	<li>
+	  plant: The plant to register.
+	</li>
+	
+</ul>
+
+
+
+
+
+
+
+
+</dd>
+
+
+
+
+<dt><a name="Flora:register_vegetation"></a><strong>Flora:register_vegetation</strong>&nbsp;(module)</dt>
+<dd>
+Registers the given vegetation module. 
+
+
+<h3>Parameters</h3>
+<ul>
+	
+	<li>
+	  module: The module to register for the vegetation value.
+	</li>
+	
+</ul>
+
+
+
+
+
+
+
+
+</dd>
+
+
+
+
+<dt><a name="Flora:set_default_plant"></a><strong>Flora:set_default_plant</strong>&nbsp;(plant)</dt>
+<dd>
+Sets the default plant. 
+
+
+<h3>Parameters</h3>
+<ul>
+	
+	<li>
+	  plant: The plant to use as default plant.
+	</li>
+	
+</ul>
+
+
+
+
+
+
+
+
+</dd>
+
+
+</dl>
 
 
 
