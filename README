@@ -1,3 +1,14 @@
+minetest-australopithecus-terragenitor
+======================================
+
+A simple, module based system to create value maps, sculpting the world or placing decorations and plants.
+
+
+Terragenitor
+------------
+
+A system for creating value maps. A "value map" in this case is really just a 2D array with the values you give it and assign to it.
+
 Example usage:
 
     -- Create a new instance of TerraGenitor.
@@ -7,14 +18,31 @@ Example usage:
     terragenitor:register(ExampleModule:new())
     terragenitor:register(OtherModule:new())
     
+    -- Register a function.
+    terragenitor:register(function(self, x, z, value, info, support)
+    	return value, info
+    end)
+    
     -- Init the whole system.
     terragenitor:init()
     
     -- Gets a map starting at the coordinates 0 and 0.
     -- The size of the map defaults to constants.block_size, which is most
-    -- liekly 80.
+    -- likely 80.
     local map = terragenitor:get_map(0, 0)
     
-    -- Get the value for the coordinates x 25 and z 30
-    local value = map[25][30]
+    -- Gets the value for the coordinates x 25 and z 30
+    local value = map[25][30].value
+
+
+Sculptor
+--------
+
+A system for sculpting the world using the LuaVoxelManipulator.
+
+
+Flora
+-----
+
+A system for placing plants and/or decorations.
 
