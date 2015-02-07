@@ -53,7 +53,7 @@ function SingleNoiseModule:init(noise_manager)
 	error("SingelNoiseModule:init(noise_manager) needs to be implemented!")
 end
 
-function SingleNoiseModule:init_map(x, z)
+function SingleNoiseModule:init_map(x, z, support)
 	self.map = self.noise:get2dMap({ x = x, y = z })
 	self.map = tableutil.swapped_reindex2d(self.map, x, z)
 end

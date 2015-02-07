@@ -78,7 +78,7 @@ function TerraGenitor:get_map(x, z, support)
 	end
 	
 	self.modules:foreach(function(module)
-		module:init_map(x, z)
+		module:init_map(x, z, support)
 	end)
 	
 	local map = {}

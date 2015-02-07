@@ -53,7 +53,7 @@ function DualNoiseModule:init(noise_manager)
 	error("DualNoiseModule:init(noise_manager) needs to be implemented!")
 end
 
-function DualNoiseModule:init_map(x, z)
+function DualNoiseModule:init_map(x, z, support)
 	self.map_a = self.noise_a:get2dMap({ x = x, y = z })
 	self.map_a = tableutil.swapped_reindex2d(self.map_a, x, z)
 	self.map_b = self.noise_b:get2dMap({ x = x, y = z })

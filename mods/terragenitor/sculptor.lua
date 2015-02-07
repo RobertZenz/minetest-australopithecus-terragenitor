@@ -94,7 +94,7 @@ end
 -- @return The same data object as given.
 function Sculptor:sculpt(x, y, z, data, area, support)
 	self.chisels:foreach(function(chisel)
-		chisel:init_block(x, y, z)
+		chisel:init_block(x, y, z, support)
 	end)
 	
 	for idxx = x, x + constants.block_size - 1, 1 do

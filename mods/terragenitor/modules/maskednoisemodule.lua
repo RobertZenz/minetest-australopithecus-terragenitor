@@ -27,7 +27,7 @@ function MaskedNoiseModule:init(noise_manager)
 	error("MaskedNoiseModule:init(noise_manager) needs to be implemented!")
 end
 
-function MaskedNoiseModule:init_map(x, z)
+function MaskedNoiseModule:init_map(x, z, support)
 	self.map = self.noise:get2dMap({ x = x, y = z })
 	self.map = tableutil.swapped_reindex2d(self.map, x, z)
 	self.map_mask = self.noise_mask:get2dMap({ x = x, y = z })

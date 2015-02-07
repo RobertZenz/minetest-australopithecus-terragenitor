@@ -48,7 +48,10 @@ end
 -- It is only called once right at the beginning.
 --
 -- @param noise_manager The NoiseManager that is used.
-function Module:init(noise_manager)
+-- @param support Optional. The support object that provides additional
+--                additional information for the init. The format of this
+--                is not defined.
+function Module:init(noise_manager, support)
 end
 
 --- The init_map method is called before values for a certain segment of

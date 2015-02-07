@@ -66,6 +66,10 @@
 	</li>
 
 	<li>
+		<a href="../../../files/mods/terragenitor/modules/maskednoisemodule.html">mods/terragenitor/modules/maskednoisemodule.lua</a>
+	</li>
+
+	<li>
 		<a href="../../../files/mods/terragenitor/modules/maskedridgedmodule.html">mods/terragenitor/modules/maskedridgedmodule.lua</a>
 	</li>
 
@@ -113,7 +117,7 @@
     </tr>
 
     <tr>
-    <td class="name" nowrap><a href="#Chisel:init">Chisel:init</a>&nbsp;(noise_manager)</td>
+    <td class="name" nowrap><a href="#Chisel:init">Chisel:init</a>&nbsp;(noise_manager, support)</td>
     <td class="summary">The init method is called when Sculptors init method is called.</td>
     </tr>
 
@@ -190,7 +194,7 @@ The value for the node at the given coordinates.
 
 
 
-<dt><a name="Chisel:init"></a><strong>Chisel:init</strong>&nbsp;(noise_manager)</dt>
+<dt><a name="Chisel:init"></a><strong>Chisel:init</strong>&nbsp;(noise_manager, support)</dt>
 <dd>
 The init method is called when Sculptors init method is called. It is only called once right at the beginning. 
 
@@ -200,6 +204,10 @@ The init method is called when Sculptors init method is called. It is only calle
 	
 	<li>
 	  noise_manager: The NoiseManager that is used.
+	</li>
+	
+	<li>
+	  support: Optional. The support object that provides additional additional information for the init. The format of this is not defined.
 	</li>
 	
 </ul>
