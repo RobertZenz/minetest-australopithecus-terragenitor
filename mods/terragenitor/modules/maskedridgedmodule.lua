@@ -56,9 +56,9 @@ end
 
 function MaskedRidgedModule:init_map(x, z, support)
 	self.map = self.noise:get2dMap({ x = x, y = z })
-	self.map = tableutil.swapped_reindex2d(self.map, x, z)
+	self.map = arrayutil.swapped_reindex2d(self.map, x, z)
 	self.map_mask = self.noise_mask:get2dMap({ x = x, y = z })
-	self.map_mask = tableutil.swapped_reindex2d(self.map_mask, x, z)
+	self.map_mask = arrayutil.swapped_reindex2d(self.map_mask, x, z)
 end
 
 function MaskedRidgedModule:get(x, z, value, info)

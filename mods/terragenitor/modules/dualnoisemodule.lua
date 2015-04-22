@@ -55,11 +55,11 @@ end
 
 function DualNoiseModule:init_map(x, z, support)
 	self.map_a = self.noise_a:get2dMap({ x = x, y = z })
-	self.map_a = tableutil.swapped_reindex2d(self.map_a, x, z)
+	self.map_a = arrayutil.swapped_reindex2d(self.map_a, x, z)
 	self.map_b = self.noise_b:get2dMap({ x = x, y = z })
-	self.map_b = tableutil.swapped_reindex2d(self.map_b, x, z)
+	self.map_b = arrayutil.swapped_reindex2d(self.map_b, x, z)
 	self.map_mask = self.noise_mask:get2dMap({ x = x, y = z })
-	self.map_mask = tableutil.swapped_reindex2d(self.map_mask, x, z)
+	self.map_mask = arrayutil.swapped_reindex2d(self.map_mask, x, z)
 end
 
 function DualNoiseModule:get(x, z, value, info)

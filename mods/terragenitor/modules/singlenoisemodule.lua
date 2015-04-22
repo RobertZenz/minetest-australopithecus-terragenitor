@@ -55,7 +55,7 @@ end
 
 function SingleNoiseModule:init_map(x, z, support)
 	self.map = self.noise:get2dMap({ x = x, y = z })
-	self.map = tableutil.swapped_reindex2d(self.map, x, z)
+	self.map = arrayutil.swapped_reindex2d(self.map, x, z)
 end
 
 function SingleNoiseModule:get(x, z, value, info)
